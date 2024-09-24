@@ -1,3 +1,23 @@
+Prerequisites
+
+Before running the application, make sure you have the following installed:
+
+- Docker
+- Docker Compose
+
+Running the Application with Docker Compose
+
+1. Clone the repository:
+
+   git clone <your-repo-url>
+   cd <your-project-directory>
+
+2. Build and run the containers:
+
+   docker-compose up --build
+
+3. Access the API at http://localhost:3000.
+
 # API Documentation
 
 This API provides authentication services (sign-up, sign-in) and wallet management for authenticated users. All endpoints that modify wallet data require authentication via a JSON Web Token (JWT).
