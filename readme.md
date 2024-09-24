@@ -9,8 +9,9 @@ Running the Application with Docker Compose
 
 1. Clone the repository:
 
-   git clone <your-repo-url>
-   cd <your-project-directory>
+   git clone https://github.com/facundowesten/UserWalletManagement/
+   
+   cd UserWalletManagement
 
 2. Build and run the containers:
 
