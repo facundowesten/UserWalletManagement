@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=postgres://user:password@db:5432/user_wallet_management
+      - JWT_SECRET=default_secret
+    depends_on:
+      - db
+    volumes:
+      - ./src:/usr/src/app/src
+    networks:
+      - wallet_management_network
+
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=user_wallet_management
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - wallet_management_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -D user_wallet_management"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+networks:
+  wallet_management_network:
+
+volumes:
+  db_data:
